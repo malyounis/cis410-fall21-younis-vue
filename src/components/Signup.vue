@@ -65,7 +65,7 @@ export default {
       email: "",
       password: "",
       errorMessage: "",
-      dupEmail: false,
+      dupeEmail: false,
     };
   },
   methods: {
@@ -84,7 +84,7 @@ export default {
         })
         .catch((myError) => {
           if (myError.response.status === 409) {
-            this.dupEmail = true;
+            this.dupeEmail = true;
           } else {
             this.errorMessage = "Cannot sign you up, please try again later.";
           }
