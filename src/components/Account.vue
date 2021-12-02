@@ -57,7 +57,9 @@ export default {
       })
       .then((theResponse) => {
         this.preferencesByUser = theResponse.data;
-      }).catch((this.accountError = true) => {})
+      }).catch((this.accountError = true) => {
+        console.log("error");
+      })
   },
 };
 </script>
