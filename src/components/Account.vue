@@ -3,9 +3,13 @@
     <h1>Account</h1>
     <hr />
     <h3>{{ nameFirst }}'s Phone Preferences</h3>
-    <table class="table">
+
+    <p vi-if="accountError" class="text-danger">
+      Cannot get your account information, please try again later.
+    </p>
+    <table v-if="preferencesByUser" class="table">
       <thead>
-        <!-- 15,1 22,50 video, stopped at 15.04 because of the linking issue -->
+        <th>Phone</th>
         <th>Color</th>
         <th>Storage Size</th>
         <th>Screen Size</th>
@@ -15,6 +19,11 @@
           v-for="thisPref in contactPreference"
           :key="thisPref.ContactPreferencesPK"
         >
+          <th>
+            <router-link :to="`/product/${thisPref.ProductFK}`">{{
+              thisPref.ProductFK
+            }}</router-link>
+          </th>
           <th>{{ thisPref.Color }}</th>
           <th>{{ thisPref.Storage }}</th>
           <th>{{ thisPref.ScreenSize }}</th>
@@ -48,7 +57,7 @@ export default {
       })
       .then((theResponse) => {
         this.preferencesByUser = theResponse.data;
-      });
+      }).catch((this.accountError = true) => {})
   },
 };
 </script>
