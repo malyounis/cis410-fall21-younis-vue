@@ -28,6 +28,10 @@
         Sign In to Add a Preference
       </button></router-link
     >
+    <br />
+    <br />
+
+    <router-view />
   </div>
 </template>
 
